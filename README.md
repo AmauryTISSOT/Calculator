@@ -1,2 +1,2 @@
 # Calculator
-Web browser calculator
+Web browser calculator using : HTML, CSS & JAVASCRIPT
