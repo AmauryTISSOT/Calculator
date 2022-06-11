@@ -143,6 +143,8 @@ const equalPressed = (valueToDetect) => {
     }
 }
 
+// Function who detect if clear has been pressed
+
 const clearPressed = (valueToDetect) => {
     if (valueToDetect === 'Clear') {
         globalStorageValue1 = '';
