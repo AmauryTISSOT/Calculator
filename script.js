@@ -23,3 +23,6 @@ const exponentiation = (a,b) => a ** b;
 
 const squareRoot = (a) => Math.sqrt(a);
 
+// function percentage
+
+const percentage = (a) => a / 100;
