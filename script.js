@@ -26,3 +26,25 @@ const squareRoot = (a) => Math.sqrt(a);
 // function percentage
 
 const percentage = (a) => a / 100;
+
+
+// AddEventListener function who return button.className
+const buttonListener = () => {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+        return button.className;
+        })
+    });
+    }
+
+buttonListener();
+
+// function who display value in the window div
+
+const displayWindow = (valueToDisplay) => {
+    const screen = document.querySelector('.window');
+    screen.textContent = valueToDisplay;
+}
+
+displayWindow('test');
