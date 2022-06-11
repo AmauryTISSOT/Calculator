@@ -1,10 +1,10 @@
 // globals variables
 
-let globalStorageValue1;
-let globalStorageValue2;
+let globalStorageValue1 = '';
+let globalStorageValue2 = '';
 let globalOperatorStorage;
-let operatorPressed = false;
-let equalPressed = false;
+let globalOperatorPressed = false;
+let globalEqualPressed = false;
 
 // function sum
 
@@ -24,7 +24,7 @@ const divide = (a,b) => a / b;
 
 // function exponentiation
 
-const exponentiation = (a,b) => a ** b;
+const square = (a) => a * a;
 
 // function square root
 
@@ -41,11 +41,12 @@ const buttonListener = () => {
     const buttons = document.querySelectorAll('button');
     buttons.forEach((button) =>
         button.addEventListener('click', () => {
-            let pressedButton = button.innerHTML
-            returnFunction(pressedButton) ;
-            console.log('globalValueStorage1 = ' + globalStorageValue1)
-            console.log('globalValueStorage2 = ' + globalStorageValue2)
-            console.log('globalOperatorStorage = ' + globalOperatorStorage)
+            let pressedButton = button.innerHTML;
+            returnFunction(pressedButton);
+            equalPressed(pressedButton)
+            console.log('globalValueStorage1 = ' + typeof globalStorageValue1)
+            console.log('globalValueStorage2 = ' + typeof globalStorageValue2)
+            console.log('globalOperatorStorage = ' + typeof globalOperatorStorage)
 
         }
         ) 
@@ -64,9 +65,8 @@ const displayWindow = (valueToDisplay) => {
 
 // function who execute the right calculation function when given and operator value
 
-const operate = (operator, a, b) => {
+const operate = (operator, a, b = null) => {
     if (operator ==='+') {
-        console.log('sum selected')
         return sum(a,b);
     }
     if (operator ==='-') {
@@ -79,10 +79,13 @@ const operate = (operator, a, b) => {
         return divide(a,b);
     }
     if (operator ==='x²') {
-        return exponentiation(a,b);
+        console.log('a = ' + a)
+        console.log('square selected')
+        console.log('b = ' + b)
+        return square(a);
     }
     if (operator === '√') {
-        return squareRoot(a);
+        return squareRoot(b);
     }
     if (operator === '%') {
         return percentage(a);
@@ -106,30 +109,42 @@ const numberDetector = (valueToDetect) => {
     }
 }
 
-// Function who detect if operator has been pressed and return a second value to store
-
-const value2storage = (valueToDetect, valueToStore) => {
-    if (valueToDetect !== undefined) {
-    console.log('OK');
-    return valueToStore;
-    }
-}
+// Function who detect if operator has been pressed and save the value in desired global variable
 
 const returnFunction = (valueToDetect) => {
 
-    if (numberDetector(valueToDetect) && operatorPressed == false) {
-        displayWindow(valueToDetect);
-        globalStorageValue1 = valueToDetect;
+    if (numberDetector(valueToDetect) && globalOperatorPressed == false) {
+        globalStorageValue1 =  globalStorageValue1.concat(valueToDetect);
+        displayWindow(globalStorageValue1);
     }
     if (operatorDetector(valueToDetect)) {
         globalOperatorStorage = valueToDetect;
-        operatorPressed = true;
+        displayWindow(globalOperatorStorage);
+        globalOperatorPressed = true;
     }
-    if (numberDetector(valueToDetect) && operatorPressed == true) {
-        displayWindow(valueToDetect);
-        globalStorageValue2 = valueToDetect;
+    if (numberDetector(valueToDetect) && globalOperatorPressed == true) {
+        globalStorageValue2 = globalStorageValue2.concat(valueToDetect);
+        displayWindow(globalStorageValue2);
     }
 }
+
+// Function who detect if equal has been pressed & change global variable + 
+// display operate function result
+
+const equalPressed = (valueToDetect) => {
+    if (valueToDetect === '='){
+        globalEqualPressed = true;
+        globalOperatorPressed = false;
+        displayWindow(operate(globalOperatorStorage, parseInt(globalStorageValue1), parseInt (globalStorageValue2)))
+        globalStorageValue1 = '';
+        globalStorageValue2 = '';
+    }
+}
+
+let x = ''
+console.log(x)
+x = x.concat('BDdazeazdazzdad')
+console.log(x)
 
 buttonListener();
 
