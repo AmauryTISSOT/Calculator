@@ -43,10 +43,9 @@ const buttonListener = () => {
         button.addEventListener('click', () => {
             let pressedButton = button.innerHTML;
             returnFunction(pressedButton);
-            equalPressed(pressedButton)
-            console.log('globalValueStorage1 = ' + typeof globalStorageValue1)
-            console.log('globalValueStorage2 = ' + typeof globalStorageValue2)
-            console.log('globalOperatorStorage = ' + typeof globalOperatorStorage)
+            equalPressed(pressedButton);
+            clearPressed(pressedButton);
+            
 
         }
         ) 
@@ -104,7 +103,7 @@ const operatorDetector = (buttonPressed) => {
 // Function who detect if a number is pressed
 
 const numberDetector = (valueToDetect) => {
-    if (Number.isInteger(parseInt(valueToDetect))) {
+    if (Number.isInteger(parseInt(valueToDetect)) || valueToDetect === '.') {
         return true;
     }
 }
@@ -135,16 +134,23 @@ const equalPressed = (valueToDetect) => {
     if (valueToDetect === '='){
         globalEqualPressed = true;
         globalOperatorPressed = false;
-        displayWindow(operate(globalOperatorStorage, parseInt(globalStorageValue1), parseInt (globalStorageValue2)))
+        displayWindow(operate(globalOperatorStorage, parseFloat(globalStorageValue1), parseFloat(globalStorageValue2)))
+        console.log('globalValueStorage1 = ' +  globalStorageValue1)
+        console.log('globalOperatorStorage = ' +  globalOperatorStorage)
+        console.log('globalValueStorage2 = ' + globalStorageValue2)
         globalStorageValue1 = '';
         globalStorageValue2 = '';
     }
 }
 
-let x = ''
-console.log(x)
-x = x.concat('BDdazeazdazzdad')
-console.log(x)
+const clearPressed = (valueToDetect) => {
+    if (valueToDetect === 'Clear') {
+        globalStorageValue1 = '';
+        globalStorageValue2 = '';
+        globalOperatorStorage;
+        displayWindow('');
+    }
+}
 
 buttonListener();
 
