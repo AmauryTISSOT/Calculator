@@ -29,11 +29,18 @@ body {
 }
 
 .window {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     height: 100px;
-    width: 265px;
+    width: 250px;
     background-color: rgb(40,40,40);
     margin: 4px;
     border-radius: 1px;
+    padding: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 22px;
 }
 
 .pad {
