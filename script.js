@@ -41,7 +41,7 @@ const buttonListener = () => {
     const buttons = document.querySelectorAll('button');
     buttons.forEach((button) =>
         button.addEventListener('click', () => {
-            let pressedButton = button.innerHTML;
+            let pressedButton = button.textContent;
             returnFunction(pressedButton);
             equalPressed(pressedButton);
             clearPressed(pressedButton);
