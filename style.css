@@ -20,6 +20,7 @@ body {
   background-color: rgb(56, 56, 56);
   color: white;
   margin-top: 5cm;
+  border: 1px solid black;
 }
 
 .title {
